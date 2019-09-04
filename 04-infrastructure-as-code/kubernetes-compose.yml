@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  event-service:
+    image: siarheikarpenka/event-service:1.0.0-SNAPSHOT
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1024m -XX:+UseG1GC -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -Xloggc:garbage-collection.log
+    ports:
+      - 8080:8080
+    deploy:
+      replicas: 5
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 1024M
